@@ -17,3 +17,5 @@ RED = (255, 0, 0)
 #taille de l'écran
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
+
+score_increment = 1
