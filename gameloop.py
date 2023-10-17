@@ -32,11 +32,10 @@ def gameloop():
 	    time += 1
 	    for entity in all_sprites:
 	        screen.blit(entity.surf, entity.rect)
-	        py.draw.rect(screen, (255   , 0, 0), apple)
 
 	    score_text = FONT.render(f'Score: {score}', True, (0, 255, 0))
 	    screen.blit(score_text, (10, 10))
-	    
+	    screen.blit(apple.image, apple.rect)
 	    # Update the display
 	    py.display.flip()
 	    clock.tick(60)
