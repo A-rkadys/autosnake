@@ -11,8 +11,10 @@ from random import randint
 class Pomme(Sprite):
 
     def __init__(self):
-        super(Pomme, self).__init__() 
-        self.image = image.load(APPLE_PICTURE)
+        super(Pomme, self).__init__()
+        self.image = Surface((PLAYER_WIDTH, PLAYER_HEIGHT))
+        self.image.blit(image.load(APPLE_PICTURE),
+            (0, 0), (0, 0, PLAYER_WIDTH, PLAYER_HEIGHT))
         self.rect = self.image.get_rect()
         self.replace()
 
