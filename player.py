@@ -8,7 +8,6 @@ from constants import (
 
 class Player(Sprite):
 
-    STEP = 5
     DIM_X = 25
     DIM_Y = 25
     MAX_X = SCREEN_WIDTH - DIM_X
@@ -22,8 +21,8 @@ class Player(Sprite):
 
     def update(self, pressed_keys):
         self.rect.move_ip(
-            self.STEP * (pressed_keys[K_RIGHT] - pressed_keys[K_LEFT]),
-            self.STEP * (pressed_keys[K_DOWN] - pressed_keys[K_UP])
+            self.DIM_X * (pressed_keys[K_RIGHT] - pressed_keys[K_LEFT]),
+            self.DIM_Y * (pressed_keys[K_DOWN] - pressed_keys[K_UP])
         )
         # To correct position if oob (horizontal axis)
         self.rect.left *= (0 < self.rect.left and self.rect.left <= self.MAX_X)
