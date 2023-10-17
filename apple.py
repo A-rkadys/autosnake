@@ -4,7 +4,6 @@ from constants import (
     PLAYER_WIDTH, PLAYER_HEIGHT,
     SCREEN_WIDTH, SCREEN_HEIGHT
 )
-from math import floor
 from pygame import Surface, image
 from pygame.sprite import Sprite
 from random import randint
