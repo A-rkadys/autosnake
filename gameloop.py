@@ -3,6 +3,10 @@ from constants import *
 from player import Player
 from apple import Pomme
 
+
+PIPI.play(10000)
+
+
 def gameloop():
 	screen = py.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 	py.display.flip()
@@ -23,7 +27,6 @@ def gameloop():
 	        elif event.type == QUIT:
 	            running = False
 
-	    PIPI.play(10000)
 
 
 	    pressed_keys = py.key.get_pressed()
