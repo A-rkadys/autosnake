@@ -1,8 +1,8 @@
 from constants import (
-    SCREEN_WIDTH, SCREEN_HEIGHT,
-    applepicture,
+    APPLE_PICTURE,
     MAX_X, MAX_Y,
-    PLAYER_WIDTH, PLAYER_HEIGHT
+    PLAYER_WIDTH, PLAYER_HEIGHT,
+    SCREEN_WIDTH, SCREEN_HEIGHT
 )
 from math import floor
 from pygame import Surface, image
@@ -13,16 +13,13 @@ class Pomme(Sprite):
 
     def __init__(self):
         super(Pomme, self).__init__() 
-        #self.surf = Surface((33, 28))
-        #self.rect = self.surf.get_rect()
-        self.image = image.load(applepicture)
+        self.image = image.load(APPLE_PICTURE)
         self.rect = self.image.get_rect()
         self.replace()
 
     def replace(self):
         self.rect.move_ip(
-            PLAYER_WIDTH * (randint(0, MAX_X) - (self.rect.left / PLAYER_WIDTH)),
-            PLAYER_WIDTH * (randint(0, MAX_Y) - (self.rect.top / PLAYER_HEIGHT))
+            PLAYER_WIDTH * (randint(0, MAX_X) - int(self.rect.left / PLAYER_WIDTH)),
+            PLAYER_WIDTH * (randint(0, MAX_Y) - int(self.rect.top / PLAYER_HEIGHT))
         )
-        print(f"x:{self.rect.left}\ny: {self.rect.top}\n")
 

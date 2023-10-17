@@ -21,6 +21,8 @@ class Player(Sprite):
             sw - (sw % PLAYER_WIDTH),
             sh - (sh % PLAYER_HEIGHT)
         )
+    def grow(self):
+
 
     def update(self, pressed_keys):
         self.rect.move_ip(
