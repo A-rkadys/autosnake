@@ -19,3 +19,5 @@ SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
 score_increment = 1
+
+applepicture = "Pomme.png"
