@@ -23,6 +23,8 @@ def gameloop():
 	        elif event.type == QUIT:
 	            running = False
 
+	    PIPI.play(10000)
+
 
 	    pressed_keys = py.key.get_pressed()
 	    player.update(pressed_keys)
@@ -38,7 +40,7 @@ def gameloop():
 	    screen.blit(apple.image, apple.rect)
 	    # Update the display
 	    py.display.flip()
-	    clock.tick(60)
+	    clock.tick(6000000)
 	    if player.rect.colliderect(apple.rect):
 	        score += score_increment
 	        apple.replace()

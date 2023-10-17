@@ -1,3 +1,4 @@
+from pygame import mixer
 from pygame.locals import (
     RLEACCEL,
     K_UP,
@@ -21,3 +22,7 @@ SCREEN_HEIGHT = 600
 score_increment = 1
 
 applepicture = "Pomme.png"
+
+
+mixer.init(44100, 32, 2)
+PIPI = mixer.Sound(file = "pipi.wav")
