@@ -42,8 +42,7 @@ def gameloop():
 	    py.display.flip()
 
 
-
-	    clock.tick(60000000000000000000)
+	    clock.tick(CLOCK_TICK)
 	    if player.rect.colliderect(apple.rect):
 	        score += score_increment
 	        apple.replace()
