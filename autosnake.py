@@ -1,11 +1,13 @@
-import pygame as py
-import sys as sys
-import os as os
-from constants import *
-from gameloop import gameloop
+#!/bin/python
 
+def main():
+    import pygame as py
+    from gameloop import gameloop
+    py.init()
+    py.font.init()
+    gameloop()
+    py.quit()
 
+if __name__ == "__main__":
+    main()
 
-py.init()
-py.font.init()
-gameloop()
