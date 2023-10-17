@@ -18,6 +18,7 @@ class Player(Sprite):
         self.surf = Surface((self.DIM_X, self.DIM_Y))
         self.surf.fill(WHITE)
         self.rect = self.surf.get_rect()
+        self.rect.move_ip(self.MAX_X >> 1, self.MAX_Y >> 1)
 
     def update(self, pressed_keys):
         self.rect.move_ip(
