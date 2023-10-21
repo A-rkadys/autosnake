@@ -27,10 +27,13 @@ def gameloop():
         if player.rect.colliderect(apple.rect):
             score += SCORE_INCREMENT
             apple.replace()
+            player.grow()
         screen.fill(BLACK)
         time += 1
         for entity in all_sprites:
             screen.blit(entity.surf, entity.rect)
+        for bodypart in player.body[1:]:
+            screen.blit(player.surf, bodypart)
         score_text = FONT.render(f'Score: {score}', True, (0, 255, 0))
         screen.blit(score_text, (10, 10))
         screen.blit(apple.image, apple.rect)
