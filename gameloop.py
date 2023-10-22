@@ -30,9 +30,8 @@ def gameloop():
             player.grow()
         screen.fill(BLACK)
         time += 1
-        for entity in all_sprites:
-            screen.blit(entity.surf, entity.rect)
-        for bodypart in player.body[1:]:
+        screen.blit(apple.surf, apple.rect)
+        for bodypart in player.body:
             screen.blit(player.surf, bodypart)
         score_text = FONT.render(f'Score: {score}', True, (0, 255, 0))
         screen.blit(score_text, (10, 10))

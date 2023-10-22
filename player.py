@@ -5,7 +5,6 @@ from constants import (
     K_UP, K_DOWN, K_LEFT, K_RIGHT,
     SCREEN_WIDTH, SCREEN_HEIGHT,
     PLAYER_WIDTH, PLAYER_HEIGHT,
-    WIDTH_LIMIT, HEIGHT_LIMIT,
     MAX_X, MAX_Y,
     WHITE
 )
@@ -51,35 +50,34 @@ class   Player(Sprite):
         if (pressed_keys[K_LEFT] and (self.direction & 1)):
             self.direction = DIR_LEFT
         elif (pressed_keys[K_UP] and (self.direction & 1) == 0):
-            new_dir = DIR_UP
+            self.direction = DIR_UP
         elif (pressed_keys[K_RIGHT] and (self.direction & 1)):
-            new_dir = DIR_RIGHT
+            self.direction = DIR_RIGHT
         elif (pressed_keys[K_DOWN] and (self.direction & 1) == 0):
-            new_dir = DIR_DOWN
-        return (new_dir)
+            self.direction = DIR_DOWN
 
     def move(self) -> None:
         i = self.length - 1
-        while (i > 0):
+        while (i):
             self.body[i].move_ip(
                 self.body[i - 1].left - self.body[i].left,
                 self.body[i - 1].top - self.body[i].top
             )
             i -= 1
         self.rect.move_ip(
-            PLAYER_WIDTH * ((self.direction & 1) == 0) * ((self.direction % 4) - 1),
-            PLAYER_HEIGHT * (self.direction & 1) * ((self.direction % 4) - 2)
+            PLAYER_WIDTH * ((self.direction & 1) == 0) * (self.direction - 1),
+            PLAYER_HEIGHT * (self.direction & 1) * (self.direction - 2)
         )
 
     def update(self, pressed_keys) -> None:
         self.change_direction(pressed_keys)
-        if (self.rect.left < PLAYER_WIDTH and self.direction == DIR_LEFT):
+        if (self.rect.left == 0 and self.direction == DIR_LEFT):
             return
-        if (self.rect.top < PLAYER_HEIGHT and self.direction == DIR_UP):
+        if (self.rect.top == 0 and self.direction == DIR_UP):
             return
-        if (self.rect.left >= WIDTH_LIMIT and self.direction == DIR_RIGHT):
+        if (self.rect.right == SCREEN_WIDTH and self.direction == DIR_RIGHT):
             return
-        if (self.rect.top >= HEIGHT_LIMIT and self.direction == DIR_DOWN):
+        if (self.rect.bottom == SCREEN_HEIGHT and self.direction == DIR_DOWN):
             return
         self.move()
 
