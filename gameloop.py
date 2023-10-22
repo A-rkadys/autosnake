@@ -15,6 +15,7 @@ def gameloop():
     running = True
     time = 0
     score = 0
+
     PIPI.play()
 
     while running:
