@@ -16,7 +16,7 @@ def gameloop():
     time = 0
     score = 0
 
-    PIPI.play()
+    SONG.play()
 
     while running:
         for event in py.event.get():

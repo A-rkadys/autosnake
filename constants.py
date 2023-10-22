@@ -37,7 +37,8 @@ SCORE_INCREMENT = 1
 APPLE_PICTURE = "Pomme.png"
 
 mixer.init(44100, 32, 2)
-PIPI = mixer.Sound(file = "FuckMachine.wav")
+MUSIC : list["pipi.wav", "FuckMachine.wav"]
+SONG = mixer.Sound(file = MUSIC)
 
 #60000000000000000000
 CLOCK_TICK = 10
