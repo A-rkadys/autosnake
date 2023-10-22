@@ -1,6 +1,7 @@
 from pygame import Surface, Rect
 from pygame.sprite import Sprite
 from constants import (
+    DIR_LEFT, DIR_UP, DIR_RIGHT, DIR_DOWN,
     K_UP, K_DOWN, K_LEFT, K_RIGHT,
     SCREEN_WIDTH, SCREEN_HEIGHT,
     PLAYER_WIDTH, PLAYER_HEIGHT,
@@ -8,7 +9,6 @@ from constants import (
     WHITE, LEFT, RIGHT,
     UP, DOWN
 )
-
 class Player(Sprite):
     view : int
     body :  list[Rect]
@@ -20,6 +20,8 @@ class Player(Sprite):
         self.rect = self.surf.get_rect()
         sw = (SCREEN_WIDTH >> 1)
         sh = (SCREEN_HEIGHT >> 1)
+        self.body = [self.rect]
+        self.length = 1
         self.rect.move_ip(
             sw - (sw % PLAYER_WIDTH),
             sh - (sh % PLAYER_HEIGHT)

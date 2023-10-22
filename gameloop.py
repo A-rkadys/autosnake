@@ -36,12 +36,10 @@ def gameloop():
         screen.fill(BLACK)
         time += 1
 
-
         screen.blit(apple.image, apple.rect)
 
         for c in player.body:
         	screen.blit(player.surf, c)
-
 
         score_text = FONT.render(f'Score: {score}', True, (0, 255, 0))
         screen.blit(score_text, (10, 10))
