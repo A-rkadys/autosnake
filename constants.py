@@ -1,4 +1,4 @@
-from pygame import mixer
+from pygame import mixer, Surface, Rect
 from pygame.locals import (
     RLEACCEL,
     K_UP,
@@ -22,19 +22,19 @@ SCREEN_HEIGHT = 600
 
 PLAYER_WIDTH = 25
 PLAYER_HEIGHT = 25
+
 SCREEN_WIDTH -= SCREEN_WIDTH % PLAYER_WIDTH
 SCREEN_HEIGHT -= SCREEN_HEIGHT % PLAYER_HEIGHT
+
 MAX_X:int = int(SCREEN_WIDTH / PLAYER_WIDTH) - 1
 MAX_Y:int = int(SCREEN_HEIGHT / PLAYER_HEIGHT) - 1
-
-DIR_LEFT:int = 0
-DIR_UP:int = 1
-DIR_RIGHT:int = 2
-DIR_DOWN:int = 3
 
 SCORE_INCREMENT = 1
 
 APPLE_PICTURE = "Pomme.png"
+
+BODY_SURFACE = Surface((PLAYER_WIDTH, PLAYER_HEIGHT))
+BODY_SURFACE.fill(GREEN)
 
 mixer.init(44100, 32, 2)
 PIPI = mixer.Sound(file = "pipi.wav")
