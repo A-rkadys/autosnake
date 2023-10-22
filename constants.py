@@ -36,3 +36,8 @@ PIPI = mixer.Sound(file = "pipi.wav")
 
 #60000000000000000000
 CLOCK_TICK = 10
+
+LEFT = 0
+RIGHT = 2
+UP = 1
+DOWN = 3 
