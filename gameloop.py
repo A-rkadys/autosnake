@@ -1,5 +1,14 @@
+from constants import (
+    SCREEN_WIDTH, SCREEN_HEIGHT,
+    MUSICS,
+    SCORE_INCREMENT,
+    BLACK,
+    FONT,
+    BODY_SURFACE,
+    CLOCK_TICK,
+    QUIT, K_ESCAPE
+)
 import pygame as py
-from constants import *
 from player import Player
 from apple import Pomme
 
@@ -11,11 +20,10 @@ def gameloop():
     all_sprites = py.sprite.Group()
     all_sprites.add(player)
     clock = py.time.Clock()
-    FONT = py.font.Font(None, 36)
     running = True
     time = 0
     score = 0
-    PIPI.play()
+    MUSICS[0].play()
 
     while running:
         for event in py.event.get():
