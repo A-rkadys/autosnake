@@ -16,23 +16,30 @@ def gameloop():
     time = 0
     score = 0
     PIPI.play()
+
     while running:
         for event in py.event.get():
+
             if event.type == QUIT:
                 running = False; break
         pressed_keys = py.key.get_pressed()
+
         if (pressed_keys[K_ESCAPE]):
             running = False; break
         player.update(pressed_keys)
+
         if player.rect.colliderect(apple.rect):
             score += SCORE_INCREMENT
             apple.replace()
-            player.grow()
+            player.growth()
         screen.fill(BLACK)
         time += 1
-        screen.blit(apple.surf, apple.rect)
-        for bodypart in player.body:
-            screen.blit(player.surf, bodypart)
+
+        screen.blit(apple.image, apple.rect)
+
+        for c in player.body:
+        	screen.blit(player.surf, c)
+
         score_text = FONT.render(f'Score: {score}', True, (0, 255, 0))
         screen.blit(score_text, (10, 10))
         screen.blit(apple.image, apple.rect)

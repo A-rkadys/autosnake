@@ -6,28 +6,14 @@ from constants import (
     SCREEN_WIDTH, SCREEN_HEIGHT,
     PLAYER_WIDTH, PLAYER_HEIGHT,
     MAX_X, MAX_Y,
-    WHITE
+    WHITE, LEFT, RIGHT,
+    UP, DOWN
 )
-
-def change_direction(dir:int, pressed_keys) -> int:
-    new_dir = dir
-    if (pressed_keys[K_LEFT] and (dir & 1)):
-        new_dir = DIR_LEFT
-    elif (pressed_keys[K_UP] and (dir & 1) == 0):
-        new_dir = DIR_UP
-    elif (pressed_keys[K_RIGHT] and (dir & 1)):
-        new_dir = DIR_RIGHT
-    elif (pressed_keys[K_DOWN] and (dir & 1) == 0):
-        new_dir = DIR_DOWN
-    return (new_dir)
-
-class   Player(Sprite):
-
-    body:       list[Rect]
-    direction:  int
-    length:     int
-
-    def __init__(self) -> None:
+class Player(Sprite):
+    view : int
+    body :  list[Rect]
+    l_body : int
+    def __init__(self):
         super(Player, self).__init__()
         self.surf = Surface((PLAYER_WIDTH, PLAYER_HEIGHT))
         self.surf.fill(WHITE)
@@ -40,44 +26,47 @@ class   Player(Sprite):
             sw - (sw % PLAYER_WIDTH),
             sh - (sh % PLAYER_HEIGHT)
         )
-        self.direction = DIR_LEFT
+        self.view = LEFT 
+        self.body = [self.rect]
+        self.l_body = 1
 
-    def grow(self) -> None:
-        self.body.append(self.body[self.length-1].copy())
-        self.length += 1
+    def growth(self):
+        self.body.append(self.rect.copy())
+        self.l_body += 1 
 
-    def change_direction(self, pressed_keys):
-        if (pressed_keys[K_LEFT] and (self.direction & 1)):
-            self.direction = DIR_LEFT
-        elif (pressed_keys[K_UP] and (self.direction & 1) == 0):
-            self.direction = DIR_UP
-        elif (pressed_keys[K_RIGHT] and (self.direction & 1)):
-            self.direction = DIR_RIGHT
-        elif (pressed_keys[K_DOWN] and (self.direction & 1) == 0):
-            self.direction = DIR_DOWN
-
-    def move(self) -> None:
-        i = self.length - 1
-        while (i):
+    def move(self):
+        i = self.l_body -1
+        while i:
             self.body[i].move_ip(
-                self.body[i - 1].left - self.body[i].left,
-                self.body[i - 1].top - self.body[i].top
-            )
+                self.body[i-1].left - self.body[i].left, 
+                self.body[i-1].top - self.body[i].top
+                )
             i -= 1
         self.rect.move_ip(
-            PLAYER_WIDTH * ((self.direction & 1) == 0) * (self.direction - 1),
-            PLAYER_HEIGHT * (self.direction & 1) * (self.direction - 2)
+
+            PLAYER_WIDTH * (self.view %2 == 0) * (self.view -1),
+            PLAYER_HEIGHT * (self.view %2 == 1) * (self.view -2)
         )
 
-    def update(self, pressed_keys) -> None:
-        self.change_direction(pressed_keys)
-        if (self.rect.left == 0 and self.direction == DIR_LEFT):
+    def update(self, pressed_keys):
+        self.change_view(pressed_keys)
+        if self.rect.left == 0 and self.view == LEFT :
             return
-        if (self.rect.top == 0 and self.direction == DIR_UP):
+        if self.rect.top == 0 and self.view == UP :
             return
-        if (self.rect.right == SCREEN_WIDTH and self.direction == DIR_RIGHT):
+        if self.rect.right == SCREEN_WIDTH and self.view == RIGHT :
             return
-        if (self.rect.bottom == SCREEN_HEIGHT and self.direction == DIR_DOWN):
-            return
-        self.move()
+        if self.rect.bottom == SCREEN_HEIGHT and self.view == DOWN :
+            return  
+        self.move()      
 
+    def change_view(self, pressed_keys):
+        if pressed_keys[K_LEFT]:
+            self.view = LEFT
+        elif pressed_keys[K_RIGHT]:
+            self.view = RIGHT
+        elif pressed_keys[K_UP]:
+            self.view = UP
+        elif pressed_keys[K_DOWN]:
+            self.view = DOWN
+    
