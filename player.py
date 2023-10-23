@@ -1,13 +1,12 @@
-from pygame import Surface, Rect
 from pygame.sprite import Sprite
 from constants import (
-    DIR_LEFT, DIR_UP, DIR_RIGHT, DIR_DOWN,
+    Surface, Rect,
     K_UP, K_DOWN, K_LEFT, K_RIGHT,
     SCREEN_WIDTH, SCREEN_HEIGHT,
     PLAYER_WIDTH, PLAYER_HEIGHT,
     MAX_X, MAX_Y,
-    WHITE, LEFT, RIGHT,
-    UP, DOWN
+    WHITE,
+    LEFT, RIGHT, UP, DOWN
 )
 class Player(Sprite):
     view : int

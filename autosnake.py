@@ -4,7 +4,6 @@ def main():
     import pygame as py
     from gameloop import gameloop
     py.init()
-    py.font.init()
     gameloop()
     py.quit()
 

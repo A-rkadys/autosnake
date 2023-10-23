@@ -1,5 +1,15 @@
+from random import randint
+from constants import (
+    SCREEN_WIDTH, SCREEN_HEIGHT,
+    MUSICS,
+    SCORE_INCREMENT,
+    BLACK,
+    FONT,
+    BODY_SURFACE,
+    CLOCK_TICK,
+    QUIT, K_ESCAPE
+)
 import pygame as py
-from constants import *
 from player import Player
 from apple import Pomme
 
@@ -11,12 +21,12 @@ def gameloop():
     all_sprites = py.sprite.Group()
     all_sprites.add(player)
     clock = py.time.Clock()
-    FONT = py.font.Font(None, 36)
     running = True
     time = 0
     score = 0
 
-    SONG.play()
+    MUSICS[randint(0, MUSICS.__len__()-1)].play()
+
 
     while running:
         for event in py.event.get():
@@ -38,8 +48,10 @@ def gameloop():
 
         screen.blit(apple.image, apple.rect)
 
-        for c in player.body:
-        	screen.blit(player.surf, c)
+        i = player.l_body - 1
+        while (i):
+        	screen.blit(BODY_SURFACE, player.body[i]); i -= 1
+        screen.blit(player.surf, player.rect)
 
         score_text = FONT.render(f'Score: {score}', True, (0, 255, 0))
         screen.blit(score_text, (10, 10))

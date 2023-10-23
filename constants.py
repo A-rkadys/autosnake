@@ -1,4 +1,8 @@
-from pygame import mixer
+from pygame import (
+    mixer,
+    Surface, Rect,
+    font
+)
 from pygame.locals import (
     RLEACCEL,
     K_UP,
@@ -22,23 +26,27 @@ SCREEN_HEIGHT = 600
 
 PLAYER_WIDTH = 25
 PLAYER_HEIGHT = 25
+
 SCREEN_WIDTH -= SCREEN_WIDTH % PLAYER_WIDTH
 SCREEN_HEIGHT -= SCREEN_HEIGHT % PLAYER_HEIGHT
+
 MAX_X:int = int(SCREEN_WIDTH / PLAYER_WIDTH) - 1
 MAX_Y:int = int(SCREEN_HEIGHT / PLAYER_HEIGHT) - 1
-
-DIR_LEFT:int = 0
-DIR_UP:int = 1
-DIR_RIGHT:int = 2
-DIR_DOWN:int = 3
 
 SCORE_INCREMENT = 1
 
 APPLE_PICTURE = "Pomme.png"
 
+BODY_SURFACE = Surface((PLAYER_WIDTH, PLAYER_HEIGHT))
+BODY_SURFACE.fill(GREEN)
+
 mixer.init(44100, 32, 2)
-MUSIC : list["pipi.wav", "FuckMachine.wav"]
-SONG = mixer.Sound(file = MUSIC)
+__MUSICS = ["pipi.wav", "FuckMachine.wav","SourisDeMetal.wav","Servidor.wav"]
+MUSICS = list(map(lambda name: mixer.Sound(file = name), __MUSICS))
+
+font.init()
+FONT = font.Font(None, 36)
+
 
 #60000000000000000000
 CLOCK_TICK = 10
