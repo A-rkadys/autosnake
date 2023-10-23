@@ -1,4 +1,4 @@
-from constants import (
+from sources.constants import (
     APPLE_PICTURE,
     MAX_X, MAX_Y,
     PLAYER_WIDTH, PLAYER_HEIGHT,

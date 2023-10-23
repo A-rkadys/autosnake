@@ -1,5 +1,5 @@
 from pygame.sprite import Sprite
-from constants import (
+from sources.constants import (
     Surface, Rect,
     K_UP, K_DOWN, K_LEFT, K_RIGHT,
     SCREEN_WIDTH, SCREEN_HEIGHT,
@@ -8,6 +8,7 @@ from constants import (
     WHITE,
     LEFT, RIGHT, UP, DOWN
 )
+
 class Player(Sprite):
     view:   int
     body:   list[Rect]

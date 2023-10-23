@@ -1,5 +1,5 @@
 from random import randint
-from constants import (
+from sources.constants import (
     SCREEN_WIDTH, SCREEN_HEIGHT,
     MUSICS,
     SCORE_INCREMENT,
@@ -12,8 +12,8 @@ from constants import (
     #OOF
 )
 import pygame as py
-from player import Player
-from apple import Pomme
+from sources.player import Player
+from sources.apple import Pomme
 
 def gameloop():
     screen = py.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))

@@ -2,7 +2,7 @@
 
 def main():
     import pygame as py
-    from gameloop import gameloop
+    from sources.gameloop import gameloop
     py.init()
     gameloop()
     py.quit()
