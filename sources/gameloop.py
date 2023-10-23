@@ -42,6 +42,9 @@ def gameloop():
         
         player.update(pressed_keys)
 
+        if not player.alive:
+            return
+
         if player.rect.colliderect(apple.rect):
             OOF.play()
             score += SCORE_INCREMENT

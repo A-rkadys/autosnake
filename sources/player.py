@@ -13,7 +13,7 @@ class Player(Sprite):
     view:   int
     body:   list[Rect]
     l_body: int
-    is_dead:    bool
+    alive:  bool
     def __init__(self):
         super(Player, self).__init__()
         self.surf = Surface((PLAYER_WIDTH, PLAYER_HEIGHT))
@@ -30,9 +30,10 @@ class Player(Sprite):
         self.view = LEFT 
         self.body = [self.rect]
         self.l_body = 1
+        self.alive = True
 
     def growth(self):
-        self.body.append(self.rect.copy())
+        self.body.append(Rect(-PLAYER_WIDTH, -PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT))
         self.l_body += 1 
 
     def move(self):
@@ -49,9 +50,14 @@ class Player(Sprite):
             PLAYER_HEIGHT * (self.view %2 == 1) * (self.view -2)
         )
 
+    def check_death_case(self) -> bool:
+        i = 1
+        while (i < self.l_body and self.alive):
+            self.alive ^= self.rect.colliderect(self.body[i])
+            i += 1
+
     def update(self, pressed_keys):
         self.change_view(pressed_keys)
-        self.is_dead = True
         if self.rect.left == 0 and self.view == LEFT :
             return
         if self.rect.top == 0 and self.view == UP :
@@ -60,7 +66,9 @@ class Player(Sprite):
             return
         if self.rect.bottom == SCREEN_HEIGHT and self.view == DOWN :
             return
-        self.is_dead = False
+        self.check_death_case()
+        if (not self.alive):
+            return
         self.move()      
 
     def change_view(self, pressed_keys):
