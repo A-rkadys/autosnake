@@ -9,9 +9,10 @@ from constants import (
     LEFT, RIGHT, UP, DOWN
 )
 class Player(Sprite):
-    view : int
-    body :  list[Rect]
-    l_body : int
+    view:   int
+    body:   list[Rect]
+    l_body: int
+    is_dead:    bool
     def __init__(self):
         super(Player, self).__init__()
         self.surf = Surface((PLAYER_WIDTH, PLAYER_HEIGHT))
@@ -49,6 +50,7 @@ class Player(Sprite):
 
     def update(self, pressed_keys):
         self.change_view(pressed_keys)
+        self.is_dead = True
         if self.rect.left == 0 and self.view == LEFT :
             return
         if self.rect.top == 0 and self.view == UP :
@@ -56,7 +58,8 @@ class Player(Sprite):
         if self.rect.right == SCREEN_WIDTH and self.view == RIGHT :
             return
         if self.rect.bottom == SCREEN_HEIGHT and self.view == DOWN :
-            return  
+            return
+        self.is_dead = False
         self.move()      
 
     def change_view(self, pressed_keys):

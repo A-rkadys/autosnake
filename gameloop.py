@@ -39,6 +39,9 @@ def gameloop():
         
         player.update(pressed_keys)
 
+        if player.is_dead:
+            running = False; break
+
         if player.rect.colliderect(apple.rect):
             score += SCORE_INCREMENT
             apple.replace()
