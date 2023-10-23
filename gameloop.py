@@ -7,7 +7,9 @@ from constants import (
     FONT,
     BODY_SURFACE,
     CLOCK_TICK,
-    QUIT, K_ESCAPE
+    QUIT, 
+    K_ESCAPE,
+    #OOF
 )
 import pygame as py
 from player import Player
@@ -40,13 +42,11 @@ def gameloop():
         
         player.update(pressed_keys)
 
-        if player.is_dead:
-            running = False; break
-
         if player.rect.colliderect(apple.rect):
             score += SCORE_INCREMENT
             apple.replace()
             player.growth()
+            #OOF.play()
 
         screen.fill(BLACK)
         screen.blit(apple.image, apple.rect)
