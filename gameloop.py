@@ -25,6 +25,7 @@ def gameloop():
     time = 0
     score = 0
 
+
     while running:
         if (not py.mixer.get_busy()):
             MUSICS[randint(0, MUSICS.__len__() - 1)].play()

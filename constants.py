@@ -41,11 +41,12 @@ BODY_SURFACE = Surface((PLAYER_WIDTH, PLAYER_HEIGHT))
 BODY_SURFACE.fill(GREEN)
 
 mixer.init(44100, 32, 2)
-__MUSICS = ["pipi.wav"]
+__MUSICS = ["pipi.wav", "FuckMachine.wav","SourisDeMetal.wav","Servidor.wav"]
 MUSICS = list(map(lambda name: mixer.Sound(file = name), __MUSICS))
 
 font.init()
 FONT = font.Font(None, 36)
+
 
 #60000000000000000000
 CLOCK_TICK = 10
